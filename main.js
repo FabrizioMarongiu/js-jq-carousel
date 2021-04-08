@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 
-
+//DICHIARAZIONE VARIABILI IMPORTATE DALL'HTML
     var next =$('.next');
     var prev = $('.prev');
 
@@ -14,6 +14,7 @@ $(document).ready(function(){
         slider('prev');
     });
 
+    //UTILIZZO TASTI
     $(document).keydown(function(e){
         console.log(e);
         console.log(e.keyCode);
@@ -38,6 +39,7 @@ $(document).ready(function(){
 /**********************************************************
  * FUNCTIONS
  * *******************************************************/
+//FUNZIONE UNICA PER PERMETTERE DI SCORRERE INDIETRO O AVANTI NELLE SLIDE
 
 function slider(direction){
 
@@ -47,22 +49,27 @@ function slider(direction){
     active.removeClass('active');
     activeCircle.removeClass('active');
 
-
+    //NEXT
     if(direction === 'next'){
 
         if(active.hasClass('last')){
             $('.images img.first ').addClass('active');
-            $('nav i.first').addClass('active');
+            $('.nav i.first').addClass('active');
+        }else{
+            active.next('img').addClass('active');
+            activeCircle.next('i').addClass('active');
         }
-        
-        active.next('img').addClass('active');
-        activeCircle.next('i').addClass('active');
-
-
-
-    }else if(direction === 'prev'){
-        active.prev('img').addClass('active');
-        activeCircle.prev('i').addClass('active');
-
     }
-}
+    
+    //PREV
+    else if(direction === 'prev'){
+
+        if(active.hasClass('first')){
+            $('.images img.last').addClass('active');
+            $('.nav i.last').addClass('active');
+        }else{
+            active.prev('img').addClass('active');
+            activeCircle.prev('i').addClass('active');
+        }
+    }
+};
