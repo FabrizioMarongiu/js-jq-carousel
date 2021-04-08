@@ -5,7 +5,7 @@ $(document).ready(function(){
     var next =$('.next');
     var prev = $('.prev');
     var circle = $('.nav i');
-    
+    var image = $('.images img');
 
 
     next.click(function(){
@@ -16,19 +16,19 @@ $(document).ready(function(){
         slider('prev');
     });
 
-
+//FUNZIONE PER SCORRERE LE IMMAGINI CON IL PALLINO
     circle.click(function(){
 
-        var click = $(this);
-        clickCircle(click);
+        var click = circle.index(this);
+        // clickCircle(click);
 
+        image.removeClass('active');
+        circle.removeClass('active');
+
+        $(image[click]).addClass('active');
+        $(circle[click]).addClass('active');
        
-
-
     })
-
-
-
 
     //UTILIZZO TASTI
     $(document).keydown(function(e){
@@ -58,44 +58,6 @@ $(document).ready(function(){
  * FUNCTIONS
  * *******************************************************/
 //FUNZIONE UNICA PER PERMETTERE DI SCORRERE INDIETRO O AVANTI NELLE SLIDE
-
-function clickCircle(clicked){
-    
-    var active = $('.images img.active');
-    var activeCircleClick = $('.nav i.active');
-
-    active.removeClass('active');
-
-    activeCircleClick.removeClass('active');
-       clicked.addClass('active');
-
-       var img = $('.images img');
-       var arrImg = jQuery.makeArray(img);
-
-       var point = $('.nav i');
-       var arrPoint = jQuery.makeArray(point);
-       
-
-       for ( var i = 0; i < arrPoint.length; i++){
-           console.log(arrPoint[i]);
-           if(arrPoint.hasClass('active')){
-               
-                console.log(trovato)
-           }
-
-       }
-
-}
-
-
-
-
-
-
-
-
-
-
 
 function slider(direction){
 
